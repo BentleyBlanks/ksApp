@@ -4,16 +4,16 @@
 本程序框架为2.0版本，基于Openframworks完成。
 
 ##截图
-![image]()
+![image](https://github.com/BentleyBlanks/ksApp/blob/master/screenshot/screenshot-1.jpg)
 
-![image]()
+![image](https://github.com/BentleyBlanks/ksApp/blob/master/screenshot/screenshot-2.jpg)
 
 ##构建说明
 1.```依赖项```addon已在dependency文件夹中全部给出，只需像往常一样在OF工程中包含或者生成时直接给定即可
 
 2.支持XCode，Visual Studio 2012（受OF框架的制约，2012以上版本暂时不支持），CodeBlock等。需要注意的是，电脑中必须要装有QuickTime，摄像头可选。
 
-3.data文件夹为200M左右，已压缩至80M打包上传到[百度云]()
+3.data文件夹为200M左右，已压缩至80M打包上传到[百度云](http://pan.baidu.com/s/1kT1UALh)
 
 ##特色介绍
 1.本框架使用了C++反射技术，因此任何外来万花筒只需要继承ksBase，并向框架注册自身即可
@@ -58,29 +58,33 @@ ksRegisterClass(ksXXX);
 
 所有的资源文件都会被底层框架自动读取并分配内存，在万花筒只需这样获取相应资源即可
 ```cpp
-// 框架默认资源
-ofBaseDraws *res = ksResource::getResource();
+// 推荐在初始化时就完成指针定向
+void init()
+{
+    // 框架默认资源
+    ofBaseDraws *res = ksResource::getResource();
 
-// 用户自定义图片资源
-ofImage* img = ksResource::getImage();
+    // 用户自定义图片资源
+    ofImage* img = ksResource::getImage();
 
-// 用户自定义音乐资源
-ofSoundPlayer* music = ksResource::getMusic();
+    // 用户自定义音乐资源
+    ofSoundPlayer* music = ksResource::getMusic();
 
-// 系统关联配乐
-EventToSound* sound = ksResource::getKsMusic();
+    // 系统关联配乐
+    EventToSound* sound = ksResource::getKsMusic();
 
-// 用户自定义视频资源
-ofVideoPlayer* video = ksResource::getVideo();
+    // 用户自定义视频资源
+    ofVideoPlayer* video = ksResource::getVideo();
 
-// 摄像头资源
-ofVideoGrabber* cam = ksResource::getCamera();
+    // 摄像头资源
+    ofVideoGrabber* cam = ksResource::getCamera();
 
-// shader资源需要注意的是必须成对出现，且后缀需为.frag .vert
-ofShader* shader = ksResource::getShader(arguments);
+    // shader资源需要注意的是必须成对出现，且后缀需为.frag .vert
+    ofShader* shader = ksResource::getShader(arguments);
 
-// 用户自定义字体资源
-ofTrueTypeFont* font = ksResource::getFont();
+    // 用户自定义字体资源
+    ofTrueTypeFont* font = ksResource::getFont();
+}
 ```
 
 函数参数```const char *ksName, const char* resName```分别代表了当前万花筒名，资源名，可用于获取指定用户的资源，因此跨用户获取资源也是可行的。
